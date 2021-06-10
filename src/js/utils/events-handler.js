@@ -6,7 +6,6 @@ class EventsHandler {
 
     handleDropEvents(e) {
         e.preventDefault();
-        console.log('Dropped');
         e.target.classList.remove("is-highlighted");
 
         const folderId = e.target.id;

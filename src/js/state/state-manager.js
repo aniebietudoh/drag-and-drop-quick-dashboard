@@ -22,5 +22,11 @@ const clearSelected = () => {
     multipleSelected = [];
 }
 
-export { getMultiple, setMultiple, getSelected, setSelected, clearSelected }
+export {
+    getMultiple,
+    setMultiple,
+    getSelected,
+    setSelected,
+    clearSelected
+}
 
