@@ -35,7 +35,7 @@ class EventsHandler {
 
         return e.type === 'dragover'
             ? e.target.classList.add("is-highlighted")
-            : e.type === 'drop' ? eventHl.handleDropEvents(e) : console.log('dragenter')
+            : e.type === 'drop' ? eventHl.handleDropEvents(e) : console.log('')
     };
 
 
