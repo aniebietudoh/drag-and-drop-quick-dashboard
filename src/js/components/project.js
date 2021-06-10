@@ -8,6 +8,7 @@ const contentCards = document.getElementById('content-cards');
 class Project {
     constructor() {}
 
+
     showAllProjects() {
         const firstNavItem = document.querySelector(".side-nav");
 
@@ -30,5 +31,5 @@ class Project {
 }
 
 const allProject = new Project()
-
 export { allProject }
+

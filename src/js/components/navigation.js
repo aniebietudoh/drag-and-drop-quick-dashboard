@@ -6,9 +6,9 @@ const dummyProjects = folders[0].content;
 let sideNavElements;
 
 
-
 class Navigation {
     constructor() {}
+
 
     generateNav() {
         const navElement = document.getElementById('navigation')
@@ -68,9 +68,9 @@ class Navigation {
                 : toggle.removeClass(e, sideNavElements);
         }
     }
-
 }
 
-const navigation = new Navigation()
 
+const navigation = new Navigation()
 export { navigation }
+

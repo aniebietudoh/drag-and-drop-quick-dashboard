@@ -14,7 +14,6 @@ class ToggleState {
             : e.target.classList.add("is-active");
     }
 
-
     dragAndSelectCard() {
         const elements = document.querySelectorAll('.card');
         ['dragstart', 'click', 'dragend'].forEach( function(evt) {
@@ -23,7 +22,6 @@ class ToggleState {
             }
         });
     }
-
 
     toggleCheckBox() {
         const checkBoxElements = document.querySelectorAll('.checkbox-select');
@@ -50,3 +48,4 @@ class ToggleState {
 
 const toggle = new ToggleState()
 export { toggle }
+

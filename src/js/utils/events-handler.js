@@ -4,7 +4,6 @@ import { clearSelected, getMultiple, getSelected } from "../state/state-manager"
 class EventsHandler {
     constructor() {}
 
-
     handleDropEvents(e) {
         e.preventDefault();
         console.log('Dropped');
@@ -26,7 +25,6 @@ class EventsHandler {
             }
         }
         clearSelected();
-
     }
 
 
@@ -52,10 +50,10 @@ class EventsHandler {
                 });
     }
 
+
     handleCardEvents(e) {
         return e.type === 'dragstart' ? eventHl.handleDragSelected(e) : eventHl.handleClickSelected(e);
     }
-
 
 
     handleDragSelected(e) {
@@ -72,7 +70,6 @@ class EventsHandler {
     }
 
 
-
     handleClickSelected(e) {
         const elements = document.querySelectorAll('.card');
         for (const item of elements) {
@@ -83,7 +80,6 @@ class EventsHandler {
             ? e.target.classList.remove("is-selected")
             : e.target.classList.add("is-selected");
     }
-
 }
 
 

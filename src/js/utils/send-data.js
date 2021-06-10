@@ -17,3 +17,4 @@ export const sendToApi = async (data) => {
             throw new Error(e);
         }
 }
+

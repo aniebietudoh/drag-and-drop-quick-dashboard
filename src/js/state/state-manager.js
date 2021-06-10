@@ -23,3 +23,4 @@ const clearSelected = () => {
 }
 
 export { getMultiple, setMultiple, getSelected, setSelected, clearSelected }
+
