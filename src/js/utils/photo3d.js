@@ -1,21 +1,47 @@
-const initPhoto = (imageOne, imageTwo) => {
+const pixiPhotoSetup = (pEl, image1, image2) => {
+    let app = new PIXI.Application({width: 200, height: 160});
+    pEl.appendChild(app.view);
 
-    let img = imageOne;
-    let depth = imageTwo;
+    let img = new PIXI.Sprite.from(image1);
+    img.width = 200;
+    img.height = 160;
+    app.stage.addChild(img);
+
+    let depthMap = new PIXI.Sprite.from(image2);
+    app.stage.addChild(depthMap);
+
+    let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
+    app.stage.filters = [displacementFilter];
+
+    window.onmousemove = function(e) {
+        displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) /20;
+        displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) /20;
+    };
+}
+
+
+// Tried to implement the 3d photo using direct webGl API
+// will come back to it later
+const webglPhotoSetup = (parentEl, image1, image2) => {
+    var img = new Image();
+    img.src = image1;
+
+    var depth = new Image();
+    depth.src = image2;
 
     let canvas = document.createElement("canvas");
     canvas.height = 160;
-    canvas.width = 130;
+    canvas.width = 160;
 
     let gl = canvas.getContext("webgl");
 
     Object.assign(canvas.style, {
-        maxWidth: "130px",
+        maxWidth: "160px",
         maxHeight: "160px",
         objectFit: "contain",
     })
 
-    document.body.appendChild(canvas);
+    parentEl.appendChild(canvas);
 
     let buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -93,4 +119,4 @@ const initPhoto = (imageOne, imageTwo) => {
     }
 }
 
-export { initPhoto }
+export { pixiPhotoSetup }

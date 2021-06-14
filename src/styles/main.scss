@@ -115,7 +115,7 @@ li:hover {
 }
 
 .image-place {
-  margin-left: -40%;
+  margin-left: -60%;
   max-width: 130px;
   height: auto;
    img {
@@ -174,7 +174,9 @@ li:hover {
   background-color: rgba(0,0,255,0.1);
 
 }
-
+.is-bg-white {
+  background-color: #ffffff !important;
+}
 #copy-no {
   margin-top: 100px !important;
   background-color: #684CD6;

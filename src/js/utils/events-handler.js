@@ -1,6 +1,6 @@
 import { folders } from "../data";
 import { clearSelected, getMultiple, getSelected } from "../store/state-manager";
-import { initPhoto } from "./photo3d";
+import { pixiPhotoSetup } from "./photo3d";
 
 class EventsHandler {
     constructor() {}
@@ -72,20 +72,14 @@ class EventsHandler {
             for (let i = 0; i < e.dataTransfer.items.length; i++) {
                 if (e.dataTransfer.items[i].kind === 'file') {
                     let file = e.dataTransfer.files[i];
+                    imageArray.push(URL.createObjectURL(file));
                     const img = document.createElement("img");
                     img.file = file;
-                    e.target.childNodes[3].appendChild(img);
-
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        img.src = event.target.result;
-                        imageArray.push(event.target.result)
-                    };
-                    reader.readAsDataURL(file);
                 }
             }
             console.log(imageArray)
-            initPhoto(imageArray[0], imageArray[1]);
+            e.target.classList.add("is-bg-white")
+            pixiPhotoSetup(e.target.childNodes[3], imageArray[0], imageArray[1]);
         }
     };
 
