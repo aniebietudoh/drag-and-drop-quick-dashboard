@@ -114,6 +114,18 @@ li:hover {
   border: 2px solid #EDEEF1;
 }
 
+.image-place {
+  margin-left: -40%;
+  max-width: 130px;
+  height: auto;
+   img {
+     max-width: 130px;
+     height: auto;
+   }
+}
+
+
+
 .card:hover {
   border: 2px solid #684CD6;
 }

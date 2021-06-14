@@ -18,7 +18,6 @@ class Navigation {
                          </li>`;
             navElement.insertAdjacentHTML("beforeend", navTemplate)
         }
-
         sideNavElements = document.querySelectorAll('.side-nav');
         for (const sideNav of sideNavElements) {
             sideNav.classList.remove("is-active")
@@ -32,7 +31,6 @@ class Navigation {
         const contentCards = document.getElementById('content-cards');
 
         localStorage.setItem("folderContents", JSON.stringify(folders))
-
         for (let content of folders) {
             if (content.shortName === e.target.id) {
                 filteredProjects = [...new Set(content.content)];
@@ -42,7 +40,6 @@ class Navigation {
         if (e.target.id === 'all-projects') {
             toggle.removeClass(e, sideNavElements)
             allProject.showAllProjects();
-
         } else {
             contentCards.innerHTML = '';
             e.preventDefault();

@@ -11,11 +11,12 @@ class Project {
 
     showAllProjects() {
         const firstNavItem = document.querySelector(".side-nav");
-
         contentCards.innerHTML = '';
         for (const project of dummyProjects) {
             const cardTemplate = `<div class="card" draggable="true" data-index="${project}">
                               <p class="is-v-centered">${project}</p>
+                              <div class="image-place">
+                              </div>
                               <div class="checkboxOverride checkbox-select">
                                  <input type="checkbox" id='${project}'>
                                  <label for='${project}'></label>

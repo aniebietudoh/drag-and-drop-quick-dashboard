@@ -1,5 +1,6 @@
 import { folders } from "../data";
-import { clearSelected, getMultiple, getSelected } from "../state/state-manager";
+import { clearSelected, getMultiple, getSelected } from "../store/state-manager";
+import { initPhoto } from "./photo3d";
 
 class EventsHandler {
     constructor() {}
@@ -24,7 +25,7 @@ class EventsHandler {
             }
         }
         clearSelected();
-    }
+    };
 
 
     handleDragEvents(e) {
@@ -32,7 +33,6 @@ class EventsHandler {
         if (e.type === 'dragleave') {
             e.target.classList.remove("is-highlighted");
         }
-
         return e.type === 'dragover'
             ? e.target.classList.add("is-highlighted")
             : e.type === 'drop' ? eventHl.handleDropEvents(e) : console.log('')
@@ -47,26 +47,67 @@ class EventsHandler {
                         element.addEventListener(evt, eventHl.handleDragEvents, false);
                     }
                 });
-    }
+    };
+
+    addEventsToProjects() {
+        const projectsCard = document.querySelectorAll('.card');
+        ['drop', 'dragover'].forEach( function(evt) {
+            for (const card of projectsCard) {
+                card.addEventListener(evt, eventHl.handleCardDropEvents, false);
+            }
+        });
+    };
+
+
+    handleCardDropEvents(e) {
+        e.preventDefault();
+        return e.type === 'dragover'
+            ? console.log("DragOver")
+            : eventHl.handleFileDrop(e);
+    };
+
+    handleFileDrop(e) {
+        if (e.dataTransfer.items) {
+            let imageArray = [];
+            for (let i = 0; i < e.dataTransfer.items.length; i++) {
+                if (e.dataTransfer.items[i].kind === 'file') {
+                    let file = e.dataTransfer.files[i];
+                    const img = document.createElement("img");
+                    img.file = file;
+                    e.target.childNodes[3].appendChild(img);
+
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        img.src = event.target.result;
+                        imageArray.push(event.target.result)
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            console.log(imageArray)
+            initPhoto(imageArray[0], imageArray[1]);
+        }
+    };
+
+
 
 
     handleCardEvents(e) {
         return e.type === 'dragstart' ? eventHl.handleDragSelected(e) : eventHl.handleClickSelected(e);
-    }
+    };
 
 
     handleDragSelected(e) {
         e.dataTransfer.effectAllowed='copy';
         const image = document.getElementById("dragImage");
         document.getElementById("copy-no").innerText = `1`;
-
         if (getMultiple()) {
             document.getElementById("copy-no").innerText = `${getSelected().length}`;
         }
         e.dataTransfer.setDragImage(image, 10, 40);
         e.dataTransfer.setData("text/html", e.target.dataset.index);
         return true;
-    }
+    };
 
 
     handleClickSelected(e) {
@@ -74,13 +115,13 @@ class EventsHandler {
         for (const item of elements) {
             item.classList.remove("is-selected")
         }
-
         e.target.classList.contains("is-selected")
             ? e.target.classList.remove("is-selected")
             : e.target.classList.add("is-selected");
-    }
-}
+    };
+};
 
 
-const eventHl = new EventsHandler()
+const eventHl = new EventsHandler();
 export { eventHl }
+

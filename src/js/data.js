@@ -1,7 +1,7 @@
 let folders;
+const projects = [...new Array(9).keys()];
 let folderContent = localStorage.getItem("folderContents");
 
-const projects = [...new Array(9).keys()];
 
 if (folderContent) {
     folders = JSON.parse(folderContent)

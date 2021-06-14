@@ -9,5 +9,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     navigation.generateNav();
     allProject.showAllProjects();
     eventHl.addEventsToNav();
+    eventHl.addEventsToProjects();
 });
 

@@ -1,4 +1,4 @@
-import { getSelected, setMultiple, setSelected } from "../state/state-manager";
+import { getSelected, setMultiple, setSelected } from "../store/state-manager";
 import { eventHl } from "./events-handler";
 
 class ToggleState {
@@ -35,7 +35,6 @@ class ToggleState {
                     } else {
                         setSelected(check.parentNode.dataset.index)
                     }
-
                     check.parentNode.classList.contains("is-card-selected")
                         ? check.parentNode.classList.remove("is-card-selected")
                         : check.parentNode.classList.add("is-card-selected");
