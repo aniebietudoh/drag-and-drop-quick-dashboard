@@ -1,4 +1,4 @@
-### Vectary Assignment - Dummy Dashboard
+### Dummy Dashboard - No frameworks, good old JS
 
 #### Startup instructions
 
